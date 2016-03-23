@@ -1,23 +1,17 @@
-# The first thing to do is to import the relevant packages
-# that I will need for my script, 
-# these include the Numpy (for maths and arrays)
-# and csv for reading and writing csv files
-# If i want to use something from this I need to call 
-# csv.[function] or np.[function] first
+# csv and numpy packages are imported
 
 import csv as csv 
 import numpy as np
 
 # Open up the csv file in to a Python object
 csv_file_object = csv.reader(open('./train.csv')) 
-header = next(csv_file_object)  # The next() command just skips the 
-                                 # first line which is a header
+header = next(csv_file_object)  # Note that the next() command has a different syntax 
+                                 # for Python 3.0 and later
 data=[]                          # Create a variable called 'data'.
 for row in csv_file_object:      # Run through each row in the csv file,
     data.append(row)             # adding each row to the data variable
 data = np.array(data) 	         # Then convert from a list to an array
-			         # Be aware that each item is currently
-                                 # a string in this format
+			                     # each item is currently a string in this format
 print (data)
 
 # The size() function counts how many elements are in
@@ -65,9 +59,11 @@ for row in test_file_object:       # For each row in test.csv
 test_file.close()
 prediction_file.close()
 
-# So we add a ceiling
+# We would like to have four price brackets. In order for the brackets to be equal
+# we add a fare_ceiling. All prices greater than the ceiling are reassigned = 39
+
 fare_ceiling = 40
-# then modify the data in the Fare column to = 39, if it is greater or equal to the ceiling
+# modify the data in the Fare column to = 39, if it is greater or equal to the ceiling
 data[ data[0::,9].astype(np.float) >= fare_ceiling, 9 ] = fare_ceiling - 1.0
 
 fare_bracket_size = 10
