@@ -24,7 +24,7 @@ proportion_survivors = number_survived / number_passengers
 
 women_only_stats = data[0::,4] == "female" # This finds where all 
                                            # the elements in the gender
-                                           # column that equals “female”
+                                           # column that equals female
 men_only_stats = data[0::,4] != "female"   # This finds where all the 
                                            # elements do not equal 
                                            # female (i.e. male)
@@ -103,7 +103,7 @@ for i in range(number_of_classes):       #loop through each class
     survival_table[0,i,j] = np.mean(women_only_stats.astype(np.float)) 
     survival_table[1,i,j] = np.mean(men_only_stats.astype(np.float))
 
-survival_table[ survival_table != survival_table ] = 0
+survival_table[np.isnan(survival_table)] = 0          # replace all the nan values with 0
 print (survival_table)
 
 survival_table[ survival_table < 0.5 ] = 0
