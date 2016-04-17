@@ -1,0 +1,22 @@
+Going from Random Forest to Logistic regression:
+
+Adding an 'Age_less_than_15' column - 75%
+Removing Parch, SibSp, and Family columns - 74.6%
+Bringing back SibSp column = 76.55%
+
+Back to Random forests with 200 estimators:
+Using same columns - 76.0%
+Normalized all values - 75.2%
+
+Random Forest with following parameter: forest = RandomForestClassifier(random_state=1, n_estimators=150, min_samples_split=4, min_samples_leaf=2)
+Result: 76.07%
+
+Removed all composite columns and included only Pclass,SibSp,Parch,Fare,Gender,Age_null_removed,Embarked_Class: 74.6% (Cross validation set - 82.5%)
+Random forest, replaced Embarked_Class with 0,1,2 columns: 76.55%, cross validation - 82.6%
+
+Logistic regression with embarked class replaced with 0, 1, 2: 76.07%, cross validation - 82.6%
+
+Random Forest with Pclass also removed: 76.55%, cross validation test - 81%
+
+Random Forest with Age_less_than_15 column included in place of Age: 77.512%, Cross validation test - 81.03%
+Logistic regression with Age_less_than_15 column: 76.55%, Cross validation test - 79.01%
